@@ -1,17 +1,22 @@
-import { Text, View } from 'react-native';
+import { Link } from 'expo-router';
+import React from 'react';
+import { View } from 'react-native';
 
-export default function Index() {
+const IndexPage = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <Text className="text-primary-50 font-Cereal-Bold text-3xl">
-        Edit app/index.tsx to edit this screen.
-      </Text>
+    <View>
+      <Link href="/(root)/(modals)/login">Login</Link>
+      <Link href="/(root)/(modals)/booking">Booking</Link>
+      <Link
+        href={{
+          pathname: '/(root)/listing/[id]',
+          params: { id: '123' },
+        }}
+      >
+        Listing details
+      </Link>
     </View>
   );
-}
+};
+
+export default IndexPage;

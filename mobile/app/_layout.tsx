@@ -1,8 +1,21 @@
 import '@/global.css';
 import { SplashScreen, Stack } from 'expo-router';
 
+import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
+import { TouchableOpacity } from 'react-native';
+
+export {
+  // Catch any errors thrown by the layout.
+  ErrorBoundary,
+} from 'expo-router';
+
+export const unstable_settings = {
+  initialRouteName: '(root)/(tabs)',
+};
+
+SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -22,5 +35,35 @@ export default function RootLayout() {
 
   if (!fontsLoaded) return null;
 
-  return <Stack />;
+  return <RootLayoutNav />;
+}
+
+function RootLayoutNav() {
+  return (
+    <Stack
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#fff',
+        },
+        headerTitleStyle: {
+          fontFamily: 'Cereal-Medium',
+        },
+      }}
+    >
+      <Stack.Screen name="(root)/(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="(root)/(modals)"
+        options={{
+          headerShown: false,
+          presentation: 'containedModal',
+          animation: 'slide_from_bottom',
+          headerLeft: () => (
+            <TouchableOpacity>
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+    </Stack>
+  );
 }
