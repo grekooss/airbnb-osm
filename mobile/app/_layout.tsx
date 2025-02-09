@@ -1,10 +1,8 @@
 import '@/global.css';
 import { SplashScreen, Stack } from 'expo-router';
 
-import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
-import { TouchableOpacity } from 'react-native';
 
 export {
   // Catch any errors thrown by the layout.
@@ -57,11 +55,12 @@ function RootLayoutNav() {
           headerShown: false,
           presentation: 'containedModal',
           animation: 'slide_from_bottom',
-          headerLeft: () => (
-            <TouchableOpacity>
-              <Ionicons name="arrow-back" size={24} color="black" />
-            </TouchableOpacity>
-          ),
+        }}
+      />
+      <Stack.Screen
+        name="(root)/listing/[id]"
+        options={{
+          headerTitle: '',
         }}
       />
     </Stack>

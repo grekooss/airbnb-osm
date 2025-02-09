@@ -8,7 +8,6 @@ export default function ModalsLayout() {
         headerTitleStyle: {
           fontFamily: 'Cereal-Medium',
         },
-        animation: 'slide_from_bottom',
       }}
     />
   );
