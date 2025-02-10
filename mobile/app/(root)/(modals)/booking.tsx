@@ -1,7 +1,6 @@
-import { Ionicons } from '@expo/vector-icons';
-import { Stack, router } from 'expo-router';
+import { Stack } from 'expo-router';
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, View } from 'react-native';
 
 const BookingModal = () => {
   return (
@@ -9,11 +8,6 @@ const BookingModal = () => {
       <Stack.Screen
         options={{
           title: 'Booking',
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => router.back()} className="ml-4">
-              <Ionicons name="arrow-back" size={24} color="black" />
-            </TouchableOpacity>
-          ),
         }}
       />
       <View className="flex-1 items-center justify-center">
