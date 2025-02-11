@@ -1,28 +1,22 @@
-import {
-  FontAwesome5,
-  Ionicons,
-  MaterialCommunityIcons,
-} from '@expo/vector-icons';
+import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
-import { useColorScheme } from 'nativewind';
 import React from 'react';
 
 const TabsLayout = () => {
-  const { colorScheme } = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: colorScheme === 'dark' ? '#FF385C' : '#FF385C',
-        tabBarInactiveTintColor: colorScheme === 'dark' ? '#717375' : '#717375',
+        tabBarActiveTintColor: '#FF385C',
+        tabBarInactiveTintColor: '#717171',
         tabBarStyle: {
-          backgroundColor: colorScheme === 'dark' ? '#4E0936' : '#FFFFFF',
-          borderTopColor: '#FF385C',
-          borderTopWidth: 1,
-          minHeight: 70,
+          backgroundColor: '#FFFFFF',
+          height: 75,
+          paddingTop: 10,
         },
         tabBarLabelStyle: {
-          fontFamily: 'Cereal-Black',
+          fontFamily: 'Cereal-Light',
+          fontSize: 10,
+          marginTop: 0,
         },
       }}
     >
@@ -31,16 +25,16 @@ const TabsLayout = () => {
         options={{
           tabBarLabel: 'Explore',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="search" size={size} color={color} />
+            <Ionicons name="search" size={24} color={color} />
           ),
         }}
       />
       <Tabs.Screen
         name="wishlists"
         options={{
-          tabBarLabel: 'Wishlists',
+          tabBarLabel: 'Wishlist',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="heart-outline" size={size} color={color} />
+            <Ionicons name="heart-outline" size={24} color={color} />
           ),
         }}
       />
@@ -58,11 +52,7 @@ const TabsLayout = () => {
         options={{
           tabBarLabel: 'Inbox',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="message-outline"
-              size={size}
-              color={color}
-            />
+            <Ionicons name="chatbox-outline" size={24} color={color} />
           ),
         }}
       />
@@ -71,7 +61,7 @@ const TabsLayout = () => {
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person-circle-outline" size={size} color={color} />
+            <Ionicons name="person-circle-outline" size={24} color={color} />
           ),
         }}
       />
