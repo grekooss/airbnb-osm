@@ -1,14 +1,14 @@
 import ExploreHeader from '@/components/ExploreHeader';
-import Listings from '@/components/Listings';
+import ListingsMap from '@/components/ListingsMap';
 import { Stack } from 'expo-router';
 import React from 'react';
 import { View } from 'react-native';
 
 const IndexPage = () => {
   return (
-    <View>
+    <View className="flex-1">
       <Stack.Screen options={{ header: () => <ExploreHeader /> }} />
-      <Listings />
+      <ListingsMap />
     </View>
   );
 };

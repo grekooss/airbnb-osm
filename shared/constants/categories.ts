@@ -45,11 +45,6 @@ export const categories = [
     description: "Camping",
   },
   {
-    label: "mountain",
-    icon: "mountain",
-    description: "Mountain",
-  },
-  {
     label: "resort",
     icon: "umbrella",
     description: "Resorts",
@@ -68,10 +63,5 @@ export const categories = [
     label: "historic",
     icon: "business",
     description: "Historic",
-  },
-  {
-    label: "car",
-    icon: "car-sport",
-    description: "Parking",
   },
 ];
