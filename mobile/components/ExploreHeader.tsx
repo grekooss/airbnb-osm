@@ -1,9 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
-import React, { useState } from 'react';
+import React from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { categories } from '../../shared/constants/categories';
+import { useCategory } from '../context/CategoryContext';
 
 type Category = {
   label: string;
@@ -12,7 +13,7 @@ type Category = {
 };
 
 const ExploreHeader = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const { activeCategory, setActiveCategory } = useCategory();
 
   return (
     <SafeAreaView className="border-b border-gray-200">
@@ -37,6 +38,7 @@ const ExploreHeader = () => {
           </TouchableOpacity>
         </Link>
       </View>
+
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -46,27 +48,25 @@ const ExploreHeader = () => {
           paddingVertical: 5,
         }}
       >
-        {categories.map((item: Category, index: number) => (
+        {categories.map((item, index) => (
           <TouchableOpacity
             key={index}
-            onPress={() => setActiveIndex(index)}
-            className={`items-center justify-center border-b-2 ${
-              activeIndex === index ? 'border-black' : 'border-transparent'
+            onPress={() => setActiveCategory(item.label)}
+            className={`mt-2 items-center justify-center border-b-[1px] ${
+              activeCategory === item.label
+                ? 'border-black'
+                : 'border-transparent'
             }`}
-            style={{ minWidth: 40 }}
+            style={{ minWidth: 50 }}
           >
-            <View className="items-center justify-center rounded-full p-2">
-              <Ionicons
-                name={item.icon as any}
-                size={24}
-                color={activeIndex === index ? '#000' : '#717171'}
-              />
-            </View>
+            <Ionicons
+              name={item.icon as any}
+              size={24}
+              color={activeCategory === item.label ? '#000' : '#6b7280'}
+            />
             <Text
               className={`mt-1 text-xs ${
-                activeIndex === index
-                  ? 'font-semibold text-black'
-                  : 'text-gray-500'
+                activeCategory === item.label ? 'text-black' : 'text-gray-500'
               }`}
             >
               {item.description}

@@ -21,7 +21,7 @@ export const categories = [
   },
   {
     label: "castle",
-    icon: "business",
+    icon: "business-outline",
     description: "Castles",
   },
   {
@@ -36,7 +36,7 @@ export const categories = [
   },
   {
     label: "cabin",
-    icon: "home",
+    icon: "home-outline",
     description: "Cabins",
   },
   {
@@ -61,7 +61,7 @@ export const categories = [
   },
   {
     label: "historic",
-    icon: "business",
+    icon: "business-outline",
     description: "Historic",
   },
 ];

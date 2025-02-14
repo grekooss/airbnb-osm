@@ -1,8 +1,8 @@
 import '@/global.css';
 import { SplashScreen, Stack } from 'expo-router';
-
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
+import { CategoryProvider } from '@/context/CategoryContext';
 
 export {
   // Catch any errors thrown by the layout.
@@ -33,7 +33,11 @@ export default function RootLayout() {
 
   if (!fontsLoaded) return null;
 
-  return <RootLayoutNav />;
+  return (
+    <CategoryProvider>
+      <RootLayoutNav />
+    </CategoryProvider>
+  );
 }
 
 function RootLayoutNav() {
