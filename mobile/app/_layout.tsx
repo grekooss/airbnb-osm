@@ -2,6 +2,7 @@ import '@/global.css';
 import { SplashScreen, Stack } from 'expo-router';
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { CategoryProvider } from '@/context/CategoryContext';
 
 export {
@@ -34,9 +35,11 @@ export default function RootLayout() {
   if (!fontsLoaded) return null;
 
   return (
-    <CategoryProvider>
-      <RootLayoutNav />
-    </CategoryProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <CategoryProvider>
+        <RootLayoutNav />
+      </CategoryProvider>
+    </GestureHandlerRootView>
   );
 }
 

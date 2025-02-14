@@ -1,20 +1,13 @@
 import { Models } from 'react-native-appwrite';
 
-export interface Listing extends Models.Document {
+export interface ListingModel extends Models.Document {
   osm_id: string;
   name: string;
-  operator: string;
-  brand: string;
+  building: string;
+  amenity: string;
   addr_housename: string;
   addr_housenumber: string;
-  amenity: string;
-  barrier: string;
-  building: string;
-  landuse: string;
-  leisure: string;
-  natural: string;
-  sport: string;
-  surface: string;
+  addr_street: string;
   way_area: number;
   center_point: string;
   way: string;

@@ -4,8 +4,8 @@ import { View } from 'react-native';
 import { Query } from 'react-native-appwrite';
 import { categories } from '../../shared/constants/categories';
 import { useCategory } from '../context/CategoryContext';
-import { Listing } from '../types/listing';
 import { MapBounds, Marker } from '../types/map';
+import { ListingModel } from '../types/listing';
 import ListingsMap from './ListingsMap';
 
 const getCategoryIcon = (category: string): string => {
@@ -15,8 +15,14 @@ const getCategoryIcon = (category: string): string => {
   return foundCategory?.icon || 'map';
 };
 
-export default function MapWithListings() {
-  const [listings, setListings] = useState<Listing[]>([]);
+interface MapWithListingsProps {
+  onListingsChange?: (listings: ListingModel[]) => void;
+}
+
+export default function MapWithListings({
+  onListingsChange,
+}: MapWithListingsProps) {
+  const [listings, setListings] = useState<ListingModel[]>([]);
   const { activeCategory } = useCategory();
   const [currentBounds, setCurrentBounds] = useState<MapBounds | null>(null);
 
@@ -36,13 +42,13 @@ export default function MapWithListings() {
       console.log('Aktualne granice mapy:', bounds);
 
       // Pobieramy punkty z wybranej kategorii
-      const response = await database.listDocuments<Listing>(
+      const response = await database.listDocuments<ListingModel>(
         process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID!,
         'landings',
         [
           // Filtrujemy po kategorii budynku
           Query.equal('building', category),
-          Query.limit(10000), // Limit punktów do wyświetlenia
+          Query.limit(1000), // Limit punktów do wyświetlenia
         ]
       );
 
@@ -68,6 +74,9 @@ export default function MapWithListings() {
         `Znaleziono ${filteredListings.length} punktów dla kategorii "${category}"`
       );
       setListings(filteredListings);
+      if (onListingsChange) {
+        onListingsChange(filteredListings);
+      }
     } catch (error) {
       console.error('Błąd podczas pobierania punktów:', error);
     }
